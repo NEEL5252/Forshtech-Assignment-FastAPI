@@ -21,7 +21,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
 @app.post("/get_virustotal_report/")
-# @limiter.limit("5/minute")
+@limiter.limit("5/minute")
 async def get_virustotal_report(
     request: Request,
     db: Session = Depends(get_db)
@@ -47,13 +47,13 @@ async def get_virustotal_report(
     return {"source": "VirusTotal API" if fetched else "Cache/DB", "data": data}
 
 @app.get("/{endpoint_type}/{endpoint_value}/refresh/")
-# @limiter.limit("3/minute")
-async def refresh_data(endpoint_type: str, endpoint_value: str, db: Session = Depends(get_db)):
+@limiter.limit("3/minute")
+async def refresh_data(request: Request, endpoint_type: str, endpoint_value: str, db: Session = Depends(get_db)):
     data, _ = await fetch_virustotal_report(endpoint_type, endpoint_value, db)
     return {"refreshed": True, "data": data}
 
 @app.post("/{endpoint_type}/refresh/")
-# @limiter.limit("3/minute")
+@limiter.limit("3/minute")
 async def refresh_file(endpoint_type: str,  request:Request, db: Session = Depends(get_db)):
     form = await request.form()
     file: UploadFile = form.get("file")
