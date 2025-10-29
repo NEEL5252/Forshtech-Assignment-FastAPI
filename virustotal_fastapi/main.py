@@ -6,7 +6,7 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from .database import Base, engine, get_db
-from .schemas import FetchRequest
+# from .schemas import FetchRequest
 from icecream import ic
 from .functions import fetch_virustotal_report, compute_file_hash
 load_dotenv()
