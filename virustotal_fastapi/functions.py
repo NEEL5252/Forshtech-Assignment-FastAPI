@@ -71,7 +71,7 @@ async def compute_file_hash(file_path:str) -> str:
 
 
 
-async def fetch_virustotal_report_without_redis(endpoint_type: str, endpoint_value: str,db:Session = Depends(get_db), file:str = None):
+async def fetch_virustotal_report_without_redis(endpoint_type: str, endpoint_value: str, db:Session = Depends(get_db), file:str = None):
     if file is not None:
         endpoint_value = compute_file_hash(file)
         url = f"{BASE_URL}/files"
