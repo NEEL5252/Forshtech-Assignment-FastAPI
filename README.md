@@ -17,10 +17,6 @@ from fastapi import FastAPI, Request, Depends
 app = FastAPI(title="VirusTotal FastAPI")
 ```
 
-Built-in API docs:  
-- Swagger UI → `/docs`  
-- ReDoc → `/redoc`
-
 ---
 
 #### 2. Redis as Cache (Optional)
