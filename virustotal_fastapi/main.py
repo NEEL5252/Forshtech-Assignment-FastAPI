@@ -45,7 +45,7 @@ async def get_virustotal_report(request: Request, db: Session = Depends(get_db))
     elif not endpoint_value:
         raise HTTPException(status_code=400, detail="endpoint_value is required")
 
-    data, fetched = await fetch_virustotal_report_without_redis(endpoint_type, endpoint_value, file, file_path, db)
+    data, fetched = await fetch_virustotal_report_without_redis(endpoint_type, endpoint_value, db, file, file_path)
     return {"source": "VirusTotal API" if fetched else "Cache/DB", "data": data}
 
 @app.get("/{endpoint_type}/{endpoint_value}/refresh/")
