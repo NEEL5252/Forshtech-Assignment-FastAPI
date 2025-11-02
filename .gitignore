@@ -1,3 +1,7 @@
 .env
 *.db
 __pycache__/
+uploads/
+alembic
+*.ini
+__init__.py
