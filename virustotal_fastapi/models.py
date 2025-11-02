@@ -13,3 +13,4 @@ class VirusTotalReport(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     last_updated_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=True)
     expires_at = Column(DateTime, default=lambda: datetime.utcnow() + timedelta(hours=12))
+    another_created_at = Column(DateTime, default=datetime.now)
